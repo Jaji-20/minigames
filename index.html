@@ -57,23 +57,30 @@
   </div>
 
   <script>
-    const numberToGuess = Math.floor(Math.random() * 100) + 1;
+  const numberToGuess = Math.floor(Math.random() * 100) + 1;
+  let attempts = 0;
 
-    function checkGuess() {
-      const guess = Number(document.getElementById("guessInput").value);
-      const result = document.getElementById("result");
+  function checkGuess() {
+    const guess = Number(document.getElementById("guessInput").value);
+    const result = document.getElementById("result");
 
-      if (!guess) {
-        result.textContent = "Please enter a number!";
-      } else if (guess < numberToGuess) {
-        result.textContent = "Too low! Try again.";
-      } else if (guess > numberToGuess) {
-        result.textContent = "Too high! Try again.";
-      } else {
-        result.textContent = "🎉 Congratulations! You guessed it!";
-      }
+    if (!guess) {
+      result.textContent = "Please enter a number!";
+      return;
     }
-  </script>
+
+    attempts++;
+
+    if (guess < numberToGuess) {
+      result.textContent = `Too low! Attempts: ${attempts}`;
+    } else if (guess > numberToGuess) {
+      result.textContent = `Too high! Attempts: ${attempts}`;
+    } else {
+      result.textContent = `🎉 Correct! You guessed it in ${attempts} attempts.`;
+    }
+  }
+</script>
+
 
 </body>
 </html>
