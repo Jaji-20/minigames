@@ -2,32 +2,34 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Guess the Number</title>
-
-  <!-- PyScript -->
-  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <title>Guess the Number Game</title>
 </head>
 <body>
 
-  <h1>Guess the Number Game</h1>
-  <p>Check the PyScript console below to play.</p>
+  <h1>Guess the Number Game 🎯</h1>
+  <p>Guess a number between 1 and 100</p>
 
-  <py-script>
-import random
+  <input type="number" id="guessInput" placeholder="Enter your guess">
+  <button onclick="checkGuess()">Guess</button>
 
-number_to_guess = random.randint(1, 100)
-guess = 0
+  <p id="result"></p>
 
-while guess != number_to_guess:
-    guess = int(input("Guess a number between 1 and 100: "))
-    if guess < number_to_guess:
-        print("Too low!")
-    elif guess > number_to_guess:
-        print("Too high!")
-    else:
-        print(f"🎉 Congrats! The number was {number_to_guess}")
-  </py-script>
+  <script>
+    const numberToGuess = Math.floor(Math.random() * 100) + 1;
+
+    function checkGuess() {
+      const guess = Number(document.getElementById("guessInput").value);
+      const result = document.getElementById("result");
+
+      if (guess < numberToGuess) {
+        result.textContent = "Too low! Try again.";
+      } else if (guess > numberToGuess) {
+        result.textContent = "Too high! Try again.";
+      } else {
+        result.textContent = "🎉 Congratulations! You guessed it!";
+      }
+    }
+  </script>
 
 </body>
 </html>
