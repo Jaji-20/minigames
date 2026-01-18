@@ -3,16 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>Guess the Number Game</title>
+
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .game-container {
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 150px;
+    }
+
+    button {
+      padding: 8px 15px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
 
-  <h1>Guess the Number Game 🎯</h1>
-  <p>Guess a number between 1 and 100</p>
+  <div class="game-container">
+    <h1>Guess the Number 🎯</h1>
+    <p>Guess a number between 1 and 100</p>
 
-  <input type="number" id="guessInput" placeholder="Enter your guess">
-  <button onclick="checkGuess()">Guess</button>
+    <input type="number" id="guessInput" placeholder="Your guess">
+    <button onclick="checkGuess()">Guess</button>
 
-  <p id="result"></p>
+    <p id="result"></p>
+  </div>
 
   <script>
     const numberToGuess = Math.floor(Math.random() * 100) + 1;
@@ -21,7 +63,9 @@
       const guess = Number(document.getElementById("guessInput").value);
       const result = document.getElementById("result");
 
-      if (guess < numberToGuess) {
+      if (!guess) {
+        result.textContent = "Please enter a number!";
+      } else if (guess < numberToGuess) {
         result.textContent = "Too low! Try again.";
       } else if (guess > numberToGuess) {
         result.textContent = "Too high! Try again.";
